@@ -1,5 +1,7 @@
-package com.example.jwt.config;
+package com.example.jwt.config.auth;
 
+import com.example.jwt.config.jwt.JwtAuthenticationFilter;
+import com.example.jwt.config.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -47,7 +49,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll() // 그외 나머지 요청은 누구나 접근 가능
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
-                        UsernamePasswordAuthenticationFilter.class);
+                        UsernamePasswordAuthenticationFilter.class)
+                ;
         // JwtAuthenticationFilter를 UsernamePasswordAuthenticationFilter 전에 넣는다
     }
 }
