@@ -22,7 +22,7 @@ public class UserController {
     private final UserRepository userRepository;
 
     // 회원가입
-    @PostMapping("/join")
+    @PostMapping("api/join")
     public Long join(@RequestBody Map<String, String> user) {
         return userRepository.save(Users.builder()
                 .email(user.get("email"))
@@ -32,7 +32,7 @@ public class UserController {
     }
 
     // 로그인
-    @PostMapping("/login")
+    @PostMapping("api/login")
     public String login(@RequestBody Map<String, String> user) {
 
         Users member = userRepository.findByEmail(user.get("email"))
