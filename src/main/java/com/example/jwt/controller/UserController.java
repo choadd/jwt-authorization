@@ -5,14 +5,10 @@ import com.example.jwt.model.Users;
 import com.example.jwt.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -25,8 +21,8 @@ public class UserController {
 
     // 회원가입
     @Transactional
-    @PostMapping("api/join")
-    public Long join(@RequestBody Map<String, String> user) {
+    @PostMapping("/api/join")
+    public Long join(@RequestParam Map<String, String> user) {
         return userRepository.save(Users.builder()
                 .email(user.get("email"))
                 .password(passwordEncoder.encode(user.get("password")))
@@ -35,8 +31,8 @@ public class UserController {
     }
 
     // 로그인
-    @PostMapping("api/login")
-    public String login(@RequestBody Map<String, String> user) {
+    @PostMapping("/api/login")
+    public String login(@RequestParam Map<String, String> user) {
 
         Users member = userRepository.findByEmail(user.get("email"))
                 .orElseThrow(() -> {
@@ -47,7 +43,6 @@ public class UserController {
         }
         return jwtTokenProvider.createToken(member.getUsername(), member.getRoles());
     }
-
 
 
 }
