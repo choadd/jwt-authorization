@@ -1,0 +1,10 @@
+version: "3" # 파일 규격 버전
+services: # 이 항목 밑에 실행하려는 컨테이너 들을 정의
+  database:
+    image: mysql
+    container_name: test_db_5-
+    environment:
+      - MYSQL_DATABASE=jun
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_ROOT_PASSWORD=0000
+    command: ['--character-set-server=utf8mb4','--collation-server']
