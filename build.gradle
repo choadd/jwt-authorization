@@ -39,6 +39,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.7.0'
 	// https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jasper
 //	implementation group: 'org.apache.tomcat', name: 'tomcat-jasper', version: '9.0.22'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 }
 
 tasks.named('test') {

@@ -25,22 +25,5 @@ public class DockerTestController {
         return new ResponseEntity<List<Test>>(testRepository.findAll(), HttpStatus.OK);
     }
 
-    public static void main(String[] args) {
-        int arr[];
-        int arrlen = arr.length;
-
-        arr = Arrays.stream(arr).distinct().toArray();
-        Arrays.sort(arr);
-        if(arrlen==arr.length){
-            for(int i=0; i<arrlen; i++){
-                if(i==arr[i]){
-
-                }else{
-                }
-            }
-        }
-
-
-    }
 
 }

@@ -8,3 +8,29 @@ services: # 이 항목 밑에 실행하려는 컨테이너 들을 정의
       - MYSQL_ROOT_HOST=%
       - MYSQL_ROOT_PASSWORD=0000
     command: ['--character-set-server=utf8mb4','--collation-server']
+
+    ports:
+      - 3306:3306
+    volumes:
+      - /home/docker_mysql/database/:/var/lib/mysql
+    networks:
+      - test_network_02
+
+  application:
+    build: .
+    restart: always
+    ports:
+      - 80:8080
+    depends_on:
+      - database
+    container_name: app_test01
+    environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/mysql?useSSL=false&serverTimezone=UTC&userLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: 1234
+    networks:
+      - test_network_02
+
+networks:
+  test_network_02:
+
